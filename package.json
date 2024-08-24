@@ -1,0 +1,39 @@
+{
+  "name": "whatsapp.adaptable",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "dev": "nodemon ./src/index",
+    "start": "node ./src/index",
+    "mongo-start": "docker run -d -p 27017:27017 --name database -v mongo-data:/data/db mongo",
+    "mongo-stop": "docker stop database",
+    "mongo-remove": "docker rm -f database",
+    "lint:hbs": "ember-template-lint .",
+    "format:hbs": "prettier **/*.hbs --write"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.5",
+    "handlebars": "^4.7.8",
+    "koa": "^2.15.3",
+    "koa-bodyparser": "^4.4.1",
+    "koa-hbs-renderer": "^1.2.0",
+    "koa-mount": "^4.0.0",
+    "koa-router": "^12.0.1",
+    "koa-session": "^6.4.0",
+    "koa-static": "^5.0.0",
+    "mongoose": "^8.5.3",
+    "nodemailer": "^6.9.14"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  },
+  "nodemonConfig": {
+    "ext": "js,mjs,json,css,html,hbs"
+  }
+}
