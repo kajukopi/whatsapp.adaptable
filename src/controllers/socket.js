@@ -75,7 +75,7 @@ function initializeSocketIO(server) {
           });
         })
       } else {
-        socket.emit('info:whatsapp', "Session: ", session.user);
+        socket.emit('info:whatsapp', "Session: ", session.user.name);
       }
     });
 
