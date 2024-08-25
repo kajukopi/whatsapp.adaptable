@@ -3,9 +3,45 @@
     <h1 class="">{{title}}</h1>
     <h2>{{code}}</h2>
   </div>
-  <div class="card-body">
-    <form action="/" method="post">
-      <button type="submit" class="btn btn-primary">get</button>
-    </form>
+  <div class="card-body text-center">
+    <img src="" alt="" srcset="" id="qr">
+    <hr class="hr hr-blurry">
+    <button class="btn btn-primary btn-sm" id="start">Start</button>
+    <hr class="hr hr-blurry">
+    <ul class="list-unstyled mt-4" id="messages"></ul>
   </div>
 </div>
+<script>
+  const socket = io();
+
+  // Listen for messages from the server
+  socket.on('start:whatsapp', function (msg, obj) {
+    console.log(obj)
+    const messages = document.getElementById('messages');
+    const li = document.createElement('li');
+    li.textContent = msg;
+    messages.appendChild(li);
+  });
+
+
+  // Listen for messages from the server
+  socket.on('info:whatsapp', function (msg, obj) {
+    console.log(obj)
+    const messages = document.getElementById('messages');
+    const li = document.createElement('li');
+    li.textContent = `${msg} ${obj}`;
+    messages.appendChild(li);
+  });
+
+  // Listen for messages from the server
+  socket.on('qr:whatsapp', function (msg) {
+    console.log(msg)
+    const img = document.getElementById('qr')
+    img.setAttribute('src', msg.url)
+  });
+
+  // Send a message to the server
+  document.getElementById('start').onclick = function () {
+    socket.emit('start:whatsapp', 'Start whatsapp');
+  };
+</script>

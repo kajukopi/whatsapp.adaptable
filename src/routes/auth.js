@@ -2,20 +2,16 @@ const nodemailer = require('nodemailer');
 const Router = require('koa-router')
 const router = new Router()
 const User = require("../models/user")
-const whatsapp = require('wa-multi-session')
-const QRCode = require('qrcode')
+
+
 
 // HOME
 router.get('/', async (ctx) => {
-  // const session = whatsapp.getSession('karimroy')
-  const session = await whatsapp.startWhatsapp("karimroy")
   await ctx.render('home', { title: 'Home', })
 })
 
 // HOME
 router.get('/scan', async (ctx) => {
-  // Start Session with Pairing Code
-  const session = await whatsapp.startWhatsapp("karimroy")
   await ctx.render('scan', { title: 'Scan', })
 })
 // HOME
@@ -51,37 +47,6 @@ async function sendPasswordResetEmail(user) {
   console.log('Send mail with defined transport object');
 }
 
-// Whatasaap Connected
-whatsapp.onConnected((sessionId) => {
-  console.log("session connected to: ", sessionId);
-})
 
-// Whatsapp Connecting
-whatsapp.onConnecting((sessionId) => {
-  console.log("session connecting to: ", sessionId);
-})
-
-// Whatsapp Disconected
-whatsapp.onDisconnected((sessionId) => {
-  console.log("session disconnected to: ", sessionId);
-})
-
-// Whatsapp on update
-whatsapp.onMessageUpdate((data) => {
-  console.log("session message update: ", data);
-})
-
-// Whatsapp on Pairing Code
-whatsapp.onPairingCode((sessionId, code) => {
-  console.log("On pairing code: ", sessionId, code);
-})
-
-// Whatsapp on QRCOde
-whatsapp.onQRUpdated(({ sessionId, qr }) => {
-  console.log("On qrcode update: ", sessionId, qr);
-  QRCode.toDataURL(qr, function (err, url) {
-    console.log(url)
-  })
-})
 
 module.exports = router
