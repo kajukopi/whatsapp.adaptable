@@ -7,7 +7,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "dev": "nodemon ./src/index",
+    "dev": "nodemon ./src/index -delay 3",
     "start": "node ./src/index",
     "mongo-start": "docker run -d -p 27017:27017 --name database -v mongo-data:/data/db mongo",
     "mongo-stop": "docker stop database",
@@ -37,6 +37,6 @@
     "nodemon": "^2.0.16"
   },
   "nodemonConfig": {
-    "ext": "js"
+    "ext": "js,hbs"
   }
 }

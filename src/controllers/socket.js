@@ -48,30 +48,8 @@ function initializeSocketIO(server) {
             })
           })
           // Whatsapp On Message Recieved
-          whatsapp.onMessageReceived(async (msg) => {
-
-            // If from me and from status return false
-            if (msg.broadcast || msg.key.fromMe || msg.key.remoteJid.includes("status")) return;
-
-            console.log(msg);
-
-            await whatsapp.readMessage({
-              sessionId: msg.sessionId,
-              key: msg.key,
-            });
-
-            await whatsapp.sendTyping({
-              sessionId: msg.sessionId,
-              to: msg.key.remoteJid,
-              duration: 3000,
-            });
-
-            await whatsapp.sendTextMessage({
-              sessionId: msg.sessionId,
-              to: msg.key.remoteJid,
-              text: msg.message.conversation,
-              // answering: msg, // for quoting message
-            });
+          whatsapp.onMessageReceived((msg) => {
+            require('./handleMessage')(msg, whatsapp)
           });
         })
       } else {

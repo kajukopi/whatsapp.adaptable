@@ -3,8 +3,6 @@ const Router = require('koa-router')
 const router = new Router()
 const User = require("../models/user")
 
-
-
 // HOME
 router.get('/', async (ctx) => {
   await ctx.render('home', { title: 'Home', })
@@ -46,7 +44,5 @@ async function sendPasswordResetEmail(user) {
   await transporter.sendMail(mailOptions);
   console.log('Send mail with defined transport object');
 }
-
-
 
 module.exports = router

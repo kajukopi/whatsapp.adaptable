@@ -3,21 +3,17 @@ const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 
 const userSchema = new mongoose.Schema({
-  username: {
+  remoteJid: {
     type: String,
     required: true,
-    unique: true,
-    minlength: 3,
-    maxlength: 50,
+    lowercase: true,
     trim: true
   },
-  email: {
+  pushName: {
     type: String,
     required: true,
-    unique: true,
     lowercase: true,
     trim: true,
-    match: [/.+\@.+\..+/, 'Please fill a valid email address']
   },
   password: {
     type: String,
