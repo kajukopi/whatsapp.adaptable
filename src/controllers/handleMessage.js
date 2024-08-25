@@ -199,7 +199,7 @@ module.exports = async (msg, whatsapp) => {
     await whatsapp.sendTextMessage({
       sessionId,
       to: remoteJid,
-      text: "Halo, terima kasih telah menghubungi kami. Sebelum kami dapat memproses pertanyaan atau keluhan Anda mengenai sekolah atau pendidikan di Kota Sukabumi, kami memerlukan beberapa informasi dasar untuk verifikasi.\n\nBoleh kami tahu nama Anda terlebih dahulu?",
+      text: "Halo, terima kasih telah menghubungi kami. Sebelum kami dapat memproses pertanyaan atau keluhan Anda mengenai sekolah atau pendidikan di Kota Sukabumi, kami memerlukan beberapa informasi dasar untuk verifikasi.",
     });
     await whatsapp.sendTextMessage({
       sessionId,
