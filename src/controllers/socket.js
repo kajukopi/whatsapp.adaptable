@@ -17,33 +17,27 @@ function initializeSocketIO(server) {
 
           // Whatasaap Connected
           whatsapp.onConnected((sessionId) => {
-            console.log("session connected to: ", sessionId);
             socket.emit('info:whatsapp', "session connected to: ", sessionId);
           })
 
           // Whatsapp Disconected
           whatsapp.onDisconnected((sessionId) => {
-            console.log("session disconnected to: ", sessionId);
             socket.emit('info:whatsapp', "session disconnected to: ", sessionId);
           })
 
           // Whatsapp on update
           whatsapp.onMessageUpdate((sessionId) => {
-            console.log("session message update: ", sessionId);
             socket.emit('info:whatsapp', "session message update: ", sessionId);
           })
 
           // Whatsapp on Pairing Code
           whatsapp.onPairingCode((sessionId, code) => {
-            console.log("On pairing code: ", sessionId, code);
             socket.emit('info:whatsapp', "On pairing code: ", code);
           })
 
           // Whatsapp on QRCOde
           whatsapp.onQRUpdated(({ sessionId, qr }) => {
-            console.log("On qrcode update: ", sessionId, qr);
             QRCode.toDataURL(qr, function (err, url) {
-              console.log(url)
               socket.emit('qr:whatsapp', { url });
             })
           })
@@ -53,7 +47,7 @@ function initializeSocketIO(server) {
           });
         })
       } else {
-        socket.emit('info:whatsapp', "Session: ", session.user.name);
+        socket.emit('info:whatsapp', "Session: ", session?.user?.id);
       }
     });
 
