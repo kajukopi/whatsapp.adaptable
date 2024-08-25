@@ -15,7 +15,9 @@ const app = new Koa();
 app.use(bodyParser());
 
 // MONGOOSE
-mongoose.connect(process.env.DATABASE_URL);
+mongoose.connect(process.env.DATABASE_URL).then((data) => {
+  console.log('Connected to database ');
+});
 
 // Static Assets
 app.use(mount("/assets", serve(path.join(__dirname, "..", "assets"))));
@@ -46,7 +48,6 @@ const RENDER_CONFIG = {
   paths: {
     views: path.join(__dirname, "views"),
     layouts: path.join(__dirname, "views", "layouts"),
-    partials: path.join(__dirname, "views", "partials"),
   },
   Promise: Promise,
 };
@@ -60,13 +61,9 @@ app.use(render(RENDER_CONFIG));
 
 // Apply the routes to the application
 const routerAuth = require("./routes/auth")
-const routerUser = require("./routes/user")
 
 app
   .use(routerAuth.routes())
   .use(routerAuth.allowedMethods());
-app
-  .use(routerUser.routes())
-  .use(routerUser.allowedMethods());
 
 module.exports = app

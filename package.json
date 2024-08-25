@@ -28,7 +28,9 @@
     "koa-session": "^6.4.0",
     "koa-static": "^5.0.0",
     "mongoose": "^8.5.3",
-    "nodemailer": "^6.9.14"
+    "nodemailer": "^6.9.14",
+    "qrcode": "^1.5.4",
+    "wa-multi-session": "^3.5.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"

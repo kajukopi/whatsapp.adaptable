@@ -1,2 +1,5 @@
 /node_modules
 .env
+/wa_credentials
+package-lock.json
+yarn.lock
